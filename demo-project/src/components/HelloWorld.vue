@@ -20,20 +20,22 @@
     <input type="text" v-focus @input="inputChange" placeholder="测试输入框"/>
     <div v-cloak>{{calculateMoney(9)}}{{date.substr(0,10)}}</div>
     <commonCheckbox :check-status="originStatus"  @callParent="receiveChildClickEvent"></commonCheckbox>
+    <commonRadioBox :check-status="originStatus"></commonRadioBox>
   </div>
 
 </template>
 
 <script>
 import commonCheckbox from './checkbox.vue'
+import commonRadioBox from './radio.vue'
 export default {
   name: 'HelloWorld',
-  components:{commonCheckbox},
+  components:{commonCheckbox,commonRadioBox},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       date:'2017-09-08 12:00:20',
-      originStatus:false
+      originStatus:true
     }
   },
   created(){
@@ -59,6 +61,7 @@ export default {
     receiveChildClickEvent(para){
       console.log('接收到来自子组件的事件')
       console.log(para)
+      this.originStatus=!this.originStatus;
     }
   }
 }
